@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ ! $ENV ]; then
+  ENV="dev"
+fi;
+
+# Clearing APC cache
+echo "Clearing APC cache ..."
+php -r "apc_clear_cache(); apc_clear_cache('user'); apc_clear_cache('opcode');"
+echo "-> Success"
+
+# Clear cache
+echo ""
+echo "Clearing cache ..."
+php app/console cache:clear --env=$ENV
+echo "-> Success"
+echo ""
