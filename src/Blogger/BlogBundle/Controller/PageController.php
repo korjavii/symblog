@@ -30,4 +30,16 @@ class PageController extends Controller
     {
         return $this->render('BloggerBlogBundle:Page:about.html.twig');
     }
+    
+    /**
+     * @Route(
+     *      "/contact",
+     *      methods="GET",
+     *      name="contact_page"
+     * )
+     */
+    public function contactAction()
+    {
+        return $this->render('BloggerBlogBundle:Page:contact.html.twig');
+    }
 }
