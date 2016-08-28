@@ -6,7 +6,6 @@ namespace Blogger\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Blog controller.
@@ -33,8 +32,12 @@ class BlogController extends Controller
             throw $this->createNotFoundException('Unable to find Blog post.');
         }
 
+        $comments = $em->getRepository('BloggerBlogBundle:Comment')
+                       ->getCommentsForBlog($blog->getId());
+
         return $this->render('BloggerBlogBundle:Blog:show.html.twig', array(
             'blog'      => $blog,
+            'comments'  => $comments
         ));
     }
 }
