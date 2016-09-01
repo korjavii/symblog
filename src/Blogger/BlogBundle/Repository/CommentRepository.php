@@ -29,7 +29,8 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
     public function getLatestComments($limit = 10)
     {
         $qb = $this->createQueryBuilder('c')
-                    ->select('c')
+                    ->select('c', 'b')
+                    ->leftJoin('c.blog', 'b')
                     ->addOrderBy('c.id', 'DESC');
 
         if (false === is_null($limit))

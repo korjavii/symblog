@@ -16,13 +16,13 @@ class BlogController extends Controller
 {
     /**
      * @Route(
-     *      "/{id}",
+     *      "/{id}/{slug}",
      *      name="blog_show",
      *      requirements={"id": "\d+"}
      * )
      * @Method({"GET"})
      */
-    public function showAction($id)
+    public function showAction($id, $slug)
     {
         $em = $this->getDoctrine()->getManager();
 
